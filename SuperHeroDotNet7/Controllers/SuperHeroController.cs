@@ -48,5 +48,15 @@ namespace SuperHeroDotNet7.Controllers
             superHeroes.Add(hero);
             return Ok(superHeroes);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetSingleHeroe(int id)
+        {
+            var hero = superHeroes.Find(h => h.Id == id);
+
+            if (hero is null) return NotFound("Sorry, but this hero doesn't exist.");
+
+            return Ok(hero);
+        }
     }
 }
