@@ -49,14 +49,18 @@ namespace SuperHeroDotNet7.Controllers
             return Ok(superHeroes);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetSingleHeroe(int id)
+        [HttpPut]
+        public async Task<IActionResult> UpdateHero(SuperHero request)
         {
-            var hero = superHeroes.Find(h => h.Id == id);
+            var hero =  superHeroes.Find(h => h.Id == request.Id);
+            if(hero is null) return NotFound("Sorry, but this hero doesn't exist.");
 
-            if (hero is null) return NotFound("Sorry, but this hero doesn't exist.");
+            hero.FirstName = request.FirstName;
+            hero.LastName = request.LastName;
+            hero.Name = request.Name;
+            hero.Place = request.Place;
 
-            return Ok(hero);
+            return Ok(superHeroes);
         }
     }
 }
