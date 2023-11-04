@@ -16,6 +16,13 @@ namespace SuperHeroDotNet7.Controllers
                     FirstName = "Peter",
                     LastName = "Parker",
                     Place = "New York City"
+                },
+                new SuperHero{
+                    Id = 2,
+                    Name = "Iron Man",
+                    FirstName = "Tony",
+                    LastName = "Stark",
+                    Place = "Malibu"
                 }
             };
 
@@ -23,6 +30,13 @@ namespace SuperHeroDotNet7.Controllers
         public async Task<ActionResult<List<SuperHero>>> GetAllHeroes()
         {
             return Ok(superHeroes);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetSingleHeroe(int id)
+        {
+            var hero =  superHeroes.Find(h => h.Id == id);
+            return Ok(hero);
         }
     }
 }
