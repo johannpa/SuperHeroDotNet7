@@ -58,6 +58,7 @@ namespace SuperHeroDotNet7.Controllers
         {
             var result = _superHeroService.DeleteHero(id);
             if (result is null) return NotFound("Hero not found.");
+
             return Ok(result);
         }
     }
