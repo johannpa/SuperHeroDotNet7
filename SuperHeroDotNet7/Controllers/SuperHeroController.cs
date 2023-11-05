@@ -19,17 +19,16 @@ namespace SuperHeroDotNet7.Controllers
         [HttpGet]
         public async Task<ActionResult<List<SuperHero>>> GetAllHeroes()
         {
-            return Ok(superHeroes);
+            return _superHeroService.GetAllHeroes();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<SuperHero>> GetSingleHeroe(int id)
         {
-            var hero =  superHeroes.Find(h => h.Id == id);
+            var result = _superHeroService.GetSingleHeroe(id);
+            if (result is null) return NotFound("Hero not found.");
 
-            if(hero is null) return NotFound("Sorry, but this hero doesn't exist.");
-
-            return Ok(hero);
+            return Ok(result);
         }
 
         [HttpPost]

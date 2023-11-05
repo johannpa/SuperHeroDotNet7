@@ -45,21 +45,21 @@ namespace SuperHeroDotNet7.Services.SuperHeroService
 
         public List<SuperHero> GetAllHeroes()
         {
-            throw new NotImplementedException();
+            return superHeroes;
         }
 
-        public IActionResult GetSingleHeroe(int id)
+        public SuperHero? GetSingleHeroe(int id)
         {
             var hero = superHeroes.Find(h => h.Id == id);
 
             if (hero is null) return null;
 
-            return Ok(hero);
+            return hero;
         }
 
-        public List<SuperHero>? UpdateHero(SuperHero request)
+        public List<SuperHero>? UpdateHero(int id, SuperHero request)
         {
-            var hero = superHeroes.Find(h => h.Id == request.Id);
+            var hero = superHeroes.Find(h => h.Id == id);
             if (hero is null) return null;
 
             hero.FirstName = request.FirstName;
