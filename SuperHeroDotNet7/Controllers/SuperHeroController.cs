@@ -39,22 +39,17 @@ namespace SuperHeroDotNet7.Controllers
             return Ok(superHeroes);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> UpdateHero(SuperHero request)
+        [HttpPut("{id}")]
+        public async Task<ActionResult<List<SuperHero>>> UpdateHero(int id, SuperHero request)
         {
-            var hero =  superHeroes.Find(h => h.Id == request.Id);
-            if(hero is null) return NotFound("Sorry, but this hero doesn't exist.");
+            var result = _superHeroService.UpdateHero(id, request);
+            if (result is null) return NotFound("Hero not found.");
 
-            hero.FirstName = request.FirstName;
-            hero.LastName = request.LastName;
-            hero.Name = request.Name;
-            hero.Place = request.Place;
-
-            return Ok(superHeroes);
+            return Ok(result);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteHero(int id)
+        public async Task<ActionResult<List<SuperHero>>> DeleteHero(int id)
         {
             var result = _superHeroService.DeleteHero(id);
             if (result is null) return NotFound("Hero not found.");

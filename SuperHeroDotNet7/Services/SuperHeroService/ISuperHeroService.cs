@@ -8,7 +8,7 @@ namespace SuperHeroDotNet7.Services.SuperHeroService
         List<SuperHero> GetAllHeroes();
         IActionResult GetSingleHeroe(int id);
         IActionResult AddHero(SuperHero hero);
-        IActionResult UpdateHero(SuperHero request);
-        IActionResult DeleteHero(int id);
+        Task<List<SuperHero>> UpdateHero(int id, SuperHero request);
+        Task<List<SuperHero>> DeleteHero(int id);
     }
 }
