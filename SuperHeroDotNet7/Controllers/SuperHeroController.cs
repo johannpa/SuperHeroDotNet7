@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SuperHeroDotNet7.Models;
+using SuperHeroDotNet7.Services.SuperHeroService;
 
 namespace SuperHeroDotNet7.Controllers
 {
@@ -8,23 +9,12 @@ namespace SuperHeroDotNet7.Controllers
     [ApiController]
     public class SuperHeroController : ControllerBase
     {
-        private static List<SuperHero> superHeroes = new List<SuperHero>
-            {
-                new SuperHero{
-                    Id = 1,
-                    Name = "Spider Man",
-                    FirstName = "Peter",
-                    LastName = "Parker",
-                    Place = "New York City"
-                },
-                new SuperHero{
-                    Id = 2,
-                    Name = "Iron Man",
-                    FirstName = "Tony",
-                    LastName = "Stark",
-                    Place = "Malibu"
-                }
-            };
+        private readonly ISuperHeroService _superHeroService;
+
+        public SuperHeroController(ISuperHeroService superHeroService)
+        {
+            _superHeroService = superHeroService;
+        }
 
         [HttpGet]
         public async Task<ActionResult<List<SuperHero>>> GetAllHeroes()
@@ -66,12 +56,9 @@ namespace SuperHeroDotNet7.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteHero(int id)
         {
-            var hero = superHeroes.Find(h => h.Id == id);
-            if (hero is null) return NotFound("Sorry, but this hero doesn't exist.");
-
-            superHeroes.Remove(hero);
-
-            return Ok(superHeroes);
+            var result = _superHeroService.DeleteHero(id);
+            if (result is null) return NotFound("Hero not found.");
+            return Ok(result);
         }
     }
 }
