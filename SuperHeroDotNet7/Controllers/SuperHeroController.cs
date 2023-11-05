@@ -23,7 +23,7 @@ namespace SuperHeroDotNet7.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetSingleHeroe(int id)
+        public async Task<ActionResult<SuperHero>> GetSingleHeroe(int id)
         {
             var hero =  superHeroes.Find(h => h.Id == id);
 
@@ -33,10 +33,10 @@ namespace SuperHeroDotNet7.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddHero(SuperHero hero)
+        public async Task<ActionResult<List<SuperHero>>> AddHero(SuperHero hero)
         {
-            superHeroes.Add(hero);
-            return Ok(superHeroes);
+            var result = _superHeroService.AddHero(hero);
+            return Ok(result);
         }
 
         [HttpPut("{id}")]

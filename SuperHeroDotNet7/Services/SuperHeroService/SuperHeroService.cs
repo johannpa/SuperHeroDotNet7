@@ -50,7 +50,11 @@ namespace SuperHeroDotNet7.Services.SuperHeroService
 
         public IActionResult GetSingleHeroe(int id)
         {
-            throw new NotImplementedException();
+            var hero = superHeroes.Find(h => h.Id == id);
+
+            if (hero is null) return null;
+
+            return Ok(hero);
         }
 
         public List<SuperHero>? UpdateHero(SuperHero request)
