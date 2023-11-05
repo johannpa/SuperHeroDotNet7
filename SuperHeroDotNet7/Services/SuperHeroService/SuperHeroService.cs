@@ -27,9 +27,10 @@ namespace SuperHeroDotNet7.Services.SuperHeroService
         };
 
 
-        public IActionResult AddHero(SuperHero hero)
+        public List<SuperHero> AddHero(SuperHero hero)
         {
-            throw new NotImplementedException();
+            superHeroes.Add(hero);
+            return superHeroes;
         }
 
         public List<SuperHero>? DeleteHero(int id)
