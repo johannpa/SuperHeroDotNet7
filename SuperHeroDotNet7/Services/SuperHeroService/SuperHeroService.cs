@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SuperHeroDotNet7.Data;
 using SuperHeroDotNet7.Models;
 
 namespace SuperHeroDotNet7.Services.SuperHeroService
@@ -25,6 +26,12 @@ namespace SuperHeroDotNet7.Services.SuperHeroService
                     Place = "Malibu"
                 }
         };
+        private readonly DataContext _context;
+
+        public SuperHeroService(DataContext context)
+        {
+            _context = context;
+        }
 
 
         public List<SuperHero> AddHero(SuperHero hero)
