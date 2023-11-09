@@ -50,9 +50,10 @@ namespace SuperHeroDotNet7.Services.SuperHeroService
             return superHeroes;
         }
 
-        public List<SuperHero> GetAllHeroes()
+        public async Task<List<SuperHero>> GetAllHeroes()
         {
-            return superHeroes;
+            var heroes = await _context.SuperHeroes.ToListAsync();
+            return heroes;
         }
 
         public SuperHero? GetSingleHeroe(int id)

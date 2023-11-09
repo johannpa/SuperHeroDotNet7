@@ -5,7 +5,7 @@ namespace SuperHeroDotNet7.Services.SuperHeroService
 {
     public interface ISuperHeroService
     {
-        List<SuperHero> GetAllHeroes();
+        Task<List<SuperHero>> GetAllHeroes();
         SuperHero? GetSingleHeroe(int id);
         List<SuperHero> AddHero(SuperHero hero);
         List<SuperHero>? UpdateHero(int id, SuperHero request);
