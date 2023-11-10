@@ -51,9 +51,8 @@ namespace SuperHeroDotNet7.Services.SuperHeroService
         }
 
         public async Task<List<SuperHero>> GetAllHeroes()
-        {
-            var heroes = await _context.SuperHeroes.ToListAsync();
-            return heroes;
+        { 
+            return await _context.SuperHeroes.ToListAsync();
         }
 
         public SuperHero? GetSingleHeroe(int id)
