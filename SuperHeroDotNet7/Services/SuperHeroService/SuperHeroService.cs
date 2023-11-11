@@ -34,13 +34,13 @@ namespace SuperHeroDotNet7.Services.SuperHeroService
         }
 
 
-        public List<SuperHero> AddHero(SuperHero hero)
+        public async Task<List<SuperHero>> AddHero(SuperHero hero)
         {
             superHeroes.Add(hero);
             return superHeroes;
         }
 
-        public List<SuperHero>? DeleteHero(int id)
+        public async Task<List<SuperHero>?> DeleteHero(int id)
         {
             var hero = superHeroes.Find(h => h.Id == id);
             if (hero is null) return null;
@@ -55,7 +55,7 @@ namespace SuperHeroDotNet7.Services.SuperHeroService
             return await _context.SuperHeroes.ToListAsync();
         }
 
-        public SuperHero? GetSingleHeroe(int id)
+        public async Task<SuperHero?> GetSingleHeroe(int id)
         {
             var hero = superHeroes.Find(h => h.Id == id);
 
@@ -64,7 +64,7 @@ namespace SuperHeroDotNet7.Services.SuperHeroService
             return hero;
         }
 
-        public List<SuperHero>? UpdateHero(int id, SuperHero request)
+        public async Task<List<SuperHero>?> UpdateHero(int id, SuperHero request)
         {
             var hero = superHeroes.Find(h => h.Id == id);
             if (hero is null) return null;
