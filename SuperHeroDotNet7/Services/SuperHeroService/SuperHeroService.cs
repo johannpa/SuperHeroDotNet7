@@ -57,7 +57,7 @@ namespace SuperHeroDotNet7.Services.SuperHeroService
 
         public async Task<SuperHero?> GetSingleHeroe(int id)
         {
-            var hero = superHeroes.Find(h => h.Id == id);
+            var hero = await _context.SuperHeroes.FindAsync(id);
 
             if (hero is null) return null;
 
@@ -66,7 +66,7 @@ namespace SuperHeroDotNet7.Services.SuperHeroService
 
         public async Task<List<SuperHero>?> UpdateHero(int id, SuperHero request)
         {
-            var hero = superHeroes.Find(h => h.Id == id);
+            var hero = await _context.SuperHeroes.FindAsync(id);
             if (hero is null) return null;
 
             hero.FirstName = request.FirstName;
