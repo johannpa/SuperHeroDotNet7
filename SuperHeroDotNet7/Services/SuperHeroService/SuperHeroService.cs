@@ -74,6 +74,8 @@ namespace SuperHeroDotNet7.Services.SuperHeroService
             hero.Name = request.Name;
             hero.Place = request.Place;
 
+            await _context.SaveChangesAsync();
+
             return superHeroes;
         }
     }
