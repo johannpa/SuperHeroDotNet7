@@ -8,24 +8,6 @@ namespace SuperHeroDotNet7.Services.SuperHeroService
     
     public class SuperHeroService : ISuperHeroService
     {
-
-        private static List<SuperHero> superHeroes = new List<SuperHero>
-            {
-                new SuperHero{
-                    Id = 1,
-                    Name = "Spider Man",
-                    FirstName = "Peter",
-                    LastName = "Parker",
-                    Place = "New York City"
-                },
-                new SuperHero{
-                    Id = 2,
-                    Name = "Iron Man",
-                    FirstName = "Tony",
-                    LastName = "Stark",
-                    Place = "Malibu"
-                }
-        };
         private readonly DataContext _context;
 
         public SuperHeroService(DataContext context)
