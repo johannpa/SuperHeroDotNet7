@@ -36,7 +36,9 @@ namespace SuperHeroDotNet7.Services.SuperHeroService
 
         public async Task<List<SuperHero>> AddHero(SuperHero hero)
         {
-            superHeroes.Add(hero);
+            _context.SuperHeroes.Add(hero);
+            await _context.SaveChangesAsync();
+
             return superHeroes;
         }
 
@@ -77,7 +79,7 @@ namespace SuperHeroDotNet7.Services.SuperHeroService
 
             await _context.SaveChangesAsync();
 
-            return superHeroes;
+            return await _context.SuperHeroes.ToListAsync();
         }
     }
 }
