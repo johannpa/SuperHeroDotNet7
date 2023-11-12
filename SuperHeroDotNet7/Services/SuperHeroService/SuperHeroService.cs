@@ -39,7 +39,7 @@ namespace SuperHeroDotNet7.Services.SuperHeroService
             _context.SuperHeroes.Add(hero);
             await _context.SaveChangesAsync();
 
-            return superHeroes;
+            return await _context.SuperHeroes.ToListAsync();
         }
 
         public async Task<List<SuperHero>?> DeleteHero(int id)
