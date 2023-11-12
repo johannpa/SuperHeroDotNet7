@@ -42,10 +42,11 @@ namespace SuperHeroDotNet7.Services.SuperHeroService
 
         public async Task<List<SuperHero>?> DeleteHero(int id)
         {
-            var hero = superHeroes.Find(h => h.Id == id);
+            var hero = await _context.SuperHeroes.FindAsync(id);
             if (hero is null) return null;
 
-            superHeroes.Remove(hero);
+            _context.SuperHeroes.Remove(hero);
+            await _context.SaveChangesAsync();
 
             return superHeroes;
         }
