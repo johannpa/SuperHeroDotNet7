@@ -50,7 +50,7 @@ namespace SuperHeroDotNet7.Services.SuperHeroService
             _context.SuperHeroes.Remove(hero);
             await _context.SaveChangesAsync();
 
-            return superHeroes;
+            return await _context.SuperHeroes.ToListAsync();
         }
 
         public async Task<List<SuperHero>> GetAllHeroes()
